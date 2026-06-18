@@ -15,9 +15,11 @@ test.describe('Logout Flow Automation', () => {
     await expect(page).toHaveURL(/inventory.html/);
 
     await productsPage.logout();
-    await expect(page).toHaveURL(/login.html/);
+    await expect(page).toHaveURL(/login.html|\/$/);
+    await expect(loginPage.loginButton).toBeVisible();
 
     await page.goto(`${config.baseURL}/inventory.html`);
-    await expect(page).toHaveURL(/login.html/);
+    await expect(page).toHaveURL(/login.html|\/$/);
+    await expect(loginPage.loginButton).toBeVisible();
   });
 });

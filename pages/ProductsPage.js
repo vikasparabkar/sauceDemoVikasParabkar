@@ -29,6 +29,7 @@ class ProductsPage {
 
   async logout() {
     await this.menuButton.click();
+    await expect(this.logoutLink).toBeVisible();
     await this.logoutLink.click();
   }
 }
