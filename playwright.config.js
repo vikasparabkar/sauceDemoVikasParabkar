@@ -21,7 +21,7 @@ module.exports = defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'on-first-retry',
-    headless: process.env.CI ? true : false,
+    headless: true,
     launchOptions: {
       args: ['--no-sandbox', '--disable-dev-shm-usage'],
     },
