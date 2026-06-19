@@ -1,0 +1,37 @@
+trigger:
+  branches:
+    include:
+      - main
+      - testDemoBranch
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Use Node.js'
+
+- script: npm install
+  displayName: 'Install npm packages'
+
+- script: npx playwright install
+  displayName: 'Install Playwright browsers'
+
+- script: npx playwright test
+  displayName: 'Run Playwright tests'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'reports/html-report'
+    artifact: 'playwright-html-report'
+  displayName: 'Publish HTML report artifact'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'reports/junit/results.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+  displayName: 'Publish JUnit test results'
