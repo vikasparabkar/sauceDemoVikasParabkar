@@ -68,4 +68,15 @@ Covered scenarios:
 ## Notes
 - No hard-coded waits are used; Playwright waits are used for actions and assertions.
 - HTML reports are generated under `reports/html-report`.
+- JUnit test results are generated at `reports/junit/results.xml`.
 - Screenshots and videos are retained only on failure.
+
+## Azure DevOps Pipeline
+To generate reports in Azure DevOps, run the Playwright suite and publish the generated report folders and JUnit results as pipeline artifacts.
+
+Example:
+- Run tests: `npx playwright test`
+- Publish HTML report folder: `reports/html-report`
+- Publish JUnit results file: `reports/junit/results.xml`
+
+In Azure DevOps, use `PublishPipelineArtifact@1` for the HTML report and `PublishTestResults@2` for JUnit results.

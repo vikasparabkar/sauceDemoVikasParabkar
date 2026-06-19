@@ -12,6 +12,7 @@ module.exports = defineConfig({
   reporter: [
     ['list'],
     ['html', { outputFolder: 'reports/html-report', open: 'never' }],
+    ['junit', { outputFile: 'reports/junit/results.xml' }],
   ],
   use: {
     baseURL: configData.baseURL,
