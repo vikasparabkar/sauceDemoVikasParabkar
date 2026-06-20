@@ -5,6 +5,14 @@ trigger:
       - master
       - testDemoBranch
 
+schedules:
+- cron: "50 9 * * *"
+  displayName: Nightly run
+  branches:
+    include:
+      - main
+  always: true
+
 pool:
   vmImage: 'ubuntu-latest'
 
